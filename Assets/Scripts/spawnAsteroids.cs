@@ -5,7 +5,7 @@ using UnityEngine;
 public class spawnAsteroids : MonoBehaviour
 {
 	[Header("Game Objects")]
-	public GameObject asteroid;
+	public GameObject[] asteroid;
 	public GameObject[] monedas;
 	[Header("Times")]
 	public float respawnMeteorTime = 1.0f;
@@ -34,7 +34,7 @@ public class spawnAsteroids : MonoBehaviour
 		spawnLvl ();
     }
 	private void spawnObject(){
-		GameObject a = Instantiate (asteroid) as GameObject;
+		GameObject a = Instantiate (asteroid[Random.Range(0, 3)]) as GameObject;
 		a.transform.position = new Vector2 (Random.Range(-screenBounds.x, screenBounds.x)
 			, screenBounds.y * 2);
 	}

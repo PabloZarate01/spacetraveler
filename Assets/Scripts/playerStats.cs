@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class playerStats : MonoBehaviour
 {
-	public GameObject newTxt;
+	public GameObject newTxt = null;
 	public Text playerHighScore;
 	public Text matchScore;
 	int scoreInt;
