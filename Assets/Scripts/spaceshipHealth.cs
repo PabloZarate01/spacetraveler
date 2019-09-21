@@ -48,14 +48,16 @@ public class spaceshipHealth : MonoBehaviour
 		effectDestroy = Instantiate(effectDestroy);
 		effectDestroy.transform.position =this.transform.position;
 		Destroy (this.gameObject);
-		//Time.timeScale = 0f;
-	}
+        FindObjectOfType<AudioManager>().Play("death");
+        //Time.timeScale = 0f;
+    }
 	public float calculateHealth(){
 		return currentHealth / maxHealth;
 	}
 	void OnCollisionEnter2D(Collision2D hit){
 		if (hit.gameObject.tag == "Meteor") {
 			TakeDamage (34f);
+        
 		}
 	}
 }

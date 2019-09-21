@@ -18,8 +18,8 @@ public class loading : MonoBehaviour
 	public GameObject prefsAlert;
 		
 	public void LoadLevel(int sceneIndex){
-		StartCoroutine (LoadAsynchronysly(sceneIndex));
-
+        FindObjectOfType<AudioManager>().Play("uiclick");
+        StartCoroutine (LoadAsynchronysly(sceneIndex));
 	}
 	IEnumerator LoadAsynchronysly(int sceneIndex){
 		AsyncOperation operation =SceneManager.LoadSceneAsync (sceneIndex);
@@ -30,28 +30,35 @@ public class loading : MonoBehaviour
 			yield return null;
 		}
 	}
-	public void exit(){
-		Application.Quit ();
+	public void exit()
+    {
+        FindObjectOfType<AudioManager>().Play("uiclick");
+        Application.Quit ();
 	}
 	public void settings(){
-		menuScreen.SetActive (false);
+        FindObjectOfType<AudioManager>().Play("uiclick");
+        menuScreen.SetActive (false);
 		settingsScreen.SetActive (true);
 	}
 	public void settingsBackMenu(){
-		settingsScreen.SetActive (false);
+        FindObjectOfType<AudioManager>().Play("uiclick");
+        settingsScreen.SetActive (false);
 		menuScreen.SetActive (true);
 	}
 	public void clearPlayerPrefs(){
-		PlayerPrefs.DeleteAll ();
+        FindObjectOfType<AudioManager>().Play("uiclick");
+        PlayerPrefs.DeleteAll ();
 		wrngWindow.SetActive (false);
 		prefsAlert.SetActive (true);
 	}
 	public void warningPlayerStats(){
-		wrngScreen.SetActive (true);
+        FindObjectOfType<AudioManager>().Play("uiclick");
+        wrngScreen.SetActive (true);
 		wrngWindow.SetActive (true);
 		prefsAlert.SetActive (false);
 	}
 	public void warningClose(){
-		wrngScreen.SetActive (false);
+        FindObjectOfType<AudioManager>().Play("uiclick");
+        wrngScreen.SetActive (false);
 	}
 }

@@ -9340,7 +9340,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\xA9 2019 ALL RIGHTS RESRVED  FROZT STUDIOS"
+  m_Text: "\xA9 2019 BORED YOUNG STUDIOS"
 --- !u!222 &2097445953
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9536,3 +9536,72 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &7112718237286331929
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7112718237720754673, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112718237720754675, guid: 76763970aa5ee9741a71218f1c1ae286,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 76763970aa5ee9741a71218f1c1ae286, type: 3}

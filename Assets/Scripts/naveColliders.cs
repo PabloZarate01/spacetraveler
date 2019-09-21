@@ -43,13 +43,23 @@ public class naveColliders : MonoBehaviour
 		coinsCount += coinsValues [2];
 	}
 	void OnCollisionEnter2D(Collision2D hit){
-		if(hit.gameObject.tag=="Coin1")
-			addCoin1 ();
+        if (hit.gameObject.tag == "Coin1")
+        {
+            addCoin1();
+            FindObjectOfType<AudioManager>().Play("coin");
+        }
+			
 		if(hit.gameObject.tag=="Coin2")
-			addCoin2 ();
-		if(hit.gameObject.tag=="Coin3")
-			addCoin3 ();
-	}
+        {
+            addCoin2();
+            FindObjectOfType<AudioManager>().Play("coin");
+        }
+        if (hit.gameObject.tag=="Coin3")
+        {
+            addCoin3();
+            FindObjectOfType<AudioManager>().Play("coin");
+        }
+    }
 	//ENDCOINS
 
 }//ENDCLASS

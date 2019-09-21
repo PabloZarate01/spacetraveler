@@ -10,6 +10,7 @@ public class objectsMovement : MonoBehaviour
 	private Shake shake;
 	public bool animacionOff;
 	public GameObject effectMeteor;
+
     // Update is called once per frame
 	void Start(){
 		screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(
@@ -36,7 +37,8 @@ public class objectsMovement : MonoBehaviour
 					effectMeteor = Instantiate(effectMeteor);
 					effectMeteor.transform.position =this.transform.position;
 					Destroy (this.gameObject);
-					Destroy (effectMeteor,1f);
+                    Destroy(effectMeteor, 1f);
+                    FindObjectOfType<AudioManager>().Play("hit");
 				}
 			}else
 			Destroy (this.gameObject);
