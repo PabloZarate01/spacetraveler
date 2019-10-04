@@ -9,17 +9,49 @@ public class loading : MonoBehaviour
 	[Header ("Loading")]
 	public GameObject loadingScreen;
 	public Slider slider;
-	[Header ("Menu")]
+    [Header("Menu")]
+    public GameObject AdManage;
 	public GameObject menuScreen;
 	public GameObject settingsScreen;
 	[Header ("Settings")]
 	public GameObject wrngScreen;
 	public GameObject wrngWindow;
 	public GameObject prefsAlert;
-		
-	public void LoadLevel(int sceneIndex){
+    private void Awake()
+    {
+        AdManage = GameObject.Find("AdManager");
+        if (AdManage)
+        {
+            Debug.Log("Found!");
+            string nameScene = SceneManager.GetActiveScene().name;
+            if (nameScene == "game")
+            {
+                AdManage.GetComponent<AdStart>().DestroyBannerAd();
+                
+            }
+            else
+            {
+                AdManage.GetComponent<AdStart>().instance.DisplayBannerAd();
+            }
+        }else
+        {
+            Debug.Log("Not found");
+        }
+    }
+    public void LoadLevel(int sceneIndex){
         FindObjectOfType<AudioManager>().Play("uiclick");
-        StartCoroutine (LoadAsynchronysly(sceneIndex));
+        float x = Random.Range(0f,1f);
+        Debug.Log(x);
+        if(x > 0.4)
+        {
+            Debug.Log("AddAppear");
+            AdManage.GetComponent<AdStart>().instance.DisplayInterstitialAd();
+            StartCoroutine(LoadAsynchronysly(sceneIndex));
+        }else
+        {
+            StartCoroutine(LoadAsynchronysly(sceneIndex));
+            Debug.Log("NoAd");
+        }
     }
 	IEnumerator LoadAsynchronysly(int sceneIndex){
 		AsyncOperation operation =SceneManager.LoadSceneAsync (sceneIndex);

@@ -7,15 +7,17 @@ using GoogleMobileAds.Api;
 public class AdStart : MonoBehaviour {
     public AdStart instance;
     private BannerView bannerAd;
+    private string bannerAdId = "ca-app-pub-7621807775957751/2769113891";
     private InterstitialAd interstitialAd;
+    private string interstitialAdId = "ca-app-pub-7621807775957751/2090457043";
     private RewardedAd rewardedAd;
-
+    private string rewardAdId = "ca-app-pub-7621807775957751/9777375370";
     public void Start()
     {
+        MobileAds.Initialize(initStatus => { });
         RequestBanner();
         RequestInterstitial();
         RequestVideoAd();
-
         DisplayBannerAd();
         if (instance != null)
         {
@@ -27,23 +29,24 @@ public class AdStart : MonoBehaviour {
             DontDestroyOnLoad(gameObject);
         }
         // Initialize the Google Mobile Ads SDK.
-        //MobileAds.Initialize(initStatus => { });
     }
     private void RequestBanner()
     {
         string adUnitId = "ca-app-pub-3940256099942544/6300978111";
+
         //PROD
 
         //PROD
         //TESTING
-        bannerAd = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Top);
+        AdSize adSize = new AdSize(250, 250);
+        bannerAd = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
         // Load the banner with the request.
         bannerAd.LoadAd(request);
         //TESTING
     }
-    private void RequestInterstitial()
+    public void RequestInterstitial()
     {
         string adUnitId = "ca-app-pub-3940256099942544/1033173712";
         //PROD
@@ -97,6 +100,10 @@ public class AdStart : MonoBehaviour {
     public void DisplayBannerAd()
     {
         bannerAd.Show();
+    }
+    public void DestroyBannerAd()
+    {
+        bannerAd.Destroy();
     }
     public void DisplayInterstitialAd()
     {
