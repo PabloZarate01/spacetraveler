@@ -20,7 +20,7 @@ public class loading : MonoBehaviour
 	public void LoadLevel(int sceneIndex){
         FindObjectOfType<AudioManager>().Play("uiclick");
         StartCoroutine (LoadAsynchronysly(sceneIndex));
-	}
+    }
 	IEnumerator LoadAsynchronysly(int sceneIndex){
 		AsyncOperation operation =SceneManager.LoadSceneAsync (sceneIndex);
 		loadingScreen.SetActive (true);
