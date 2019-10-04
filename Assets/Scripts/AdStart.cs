@@ -5,20 +5,17 @@ using System;
 using GoogleMobileAds.Api;
 
 public class AdStart : MonoBehaviour {
-    public AdStart instance;
+    public static AdStart instance;
     private BannerView bannerAd;
     private string bannerAdId = "ca-app-pub-7621807775957751/2769113891";
     private InterstitialAd interstitialAd;
     private string interstitialAdId = "ca-app-pub-7621807775957751/2090457043";
     private RewardedAd rewardedAd;
     private string rewardAdId = "ca-app-pub-7621807775957751/9777375370";
-    public void Start()
+
+    private string appId = "ca-app-pub-7621807775957751~1438622877";
+    public void Awake()
     {
-        MobileAds.Initialize(initStatus => { });
-        RequestBanner();
-        RequestInterstitial();
-        RequestVideoAd();
-        DisplayBannerAd();
         if (instance != null)
         {
             Destroy(gameObject);
@@ -28,50 +25,80 @@ public class AdStart : MonoBehaviour {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        // Initialize the Google Mobile Ads SDK.
+        MobileAds.Initialize(appId);
+        RequestBanner();
+        RequestInterstitial();
+        RequestVideoAd();
     }
     private void RequestBanner()
     {
-        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
-
-        //PROD
-
-        //PROD
         //TESTING
-        AdSize adSize = new AdSize(250, 250);
+        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
         bannerAd = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
-        // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
-        // Load the banner with the request.
         bannerAd.LoadAd(request);
         //TESTING
+        //PROD
+        //AdSize adSize = new AdSize(250, 250);
+        //bannerAd = new BannerView(bannerAdId, adSize, AdPosition.Top);
+        //AdRequest request = new AdRequest.Builder().Build();
+        //bannerAd.LoadAd(request);
+        //PROD
+
+
     }
     public void RequestInterstitial()
     {
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
-        //PROD
-        //PROD
         //TESTING
+        string adUnitId = "ca-app-pub-3940256099942544/1033173712";
         interstitialAd = new InterstitialAd(adUnitId);
-        // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
-        // Load the banner with the request.
         interstitialAd.LoadAd(request);
         //TESTING
+        //PROD
+        //interstitialAd = new InterstitialAd(interstitialAdId);
+        //AdRequest request = new AdRequest.Builder().Build();
+        //interstitialAd.LoadAd(request);
+        //PROD
     }
     private void RequestVideoAd()
     {
-        //PROD
-        //PROD
         //TESTING
         string adUnitId = "ca-app-pub-3940256099942544/5224354917";
         rewardedAd = new RewardedAd(adUnitId);
-        // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().AddTestDevice("2077ef9a63d2b398840261c8221a0c9b").Build();
-        // Load the banner with the request.
         rewardedAd.LoadAd(request);
         //TESTING
+        //PROD
+        //rewardedAd = new RewardedAd(rewardAdId);
+        // Create an empty ad request.
+        //AdRequest request = new AdRequest.Builder().Build();
+        // Load the banner with the request.
+        //rewardedAd.LoadAd(request);
+        //PROD
     }
+    public void DisplayBannerAd()
+    {
+        Debug.Log("Show");
+        bannerAd.Show();
+    }
+    public void HideBannerAd()
+    {
+        Debug.Log("Hide");
+        bannerAd.Hide();
+    }
+    public void DisplayInterstitialAd()
+    {
+        Debug.Log("DisplayInter");
+        if(interstitialAd.IsLoaded())
+            interstitialAd.Show();
+    }
+    public void DisplayRewardAd()
+    {
+        if (rewardedAd.IsLoaded())
+            rewardedAd.Show();
+    }
+    /*
     public void HandleOnAdLoaded(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleAdLoaded event received");
@@ -97,25 +124,8 @@ public class AdStart : MonoBehaviour {
     {
         MonoBehaviour.print("HandleAdLeavingApplication event received");
     }
-    public void DisplayBannerAd()
-    {
-        bannerAd.Show();
-    }
-    public void DestroyBannerAd()
-    {
-        bannerAd.Destroy();
-    }
-    public void DisplayInterstitialAd()
-    {
-        Debug.Log("DisplayInter");
-        if(interstitialAd.IsLoaded())
-            interstitialAd.Show();
-    }
-    public void DisplayRewardAd()
-    {
-        if (rewardedAd.IsLoaded())
-            rewardedAd.Show();
-    }
+    */
+    /*
     void HandlerBannerAdEvents ( bool suscribe)
     {
         if ( suscribe)
@@ -145,5 +155,5 @@ public class AdStart : MonoBehaviour {
         }
 
         
-    }
+    }*/
 }

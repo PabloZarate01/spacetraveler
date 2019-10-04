@@ -10,42 +10,37 @@ public class loading : MonoBehaviour
 	public GameObject loadingScreen;
 	public Slider slider;
     [Header("Menu")]
-    public GameObject AdManage;
 	public GameObject menuScreen;
 	public GameObject settingsScreen;
 	[Header ("Settings")]
 	public GameObject wrngScreen;
 	public GameObject wrngWindow;
 	public GameObject prefsAlert;
-    private void Awake()
+    private void Start()
     {
-        AdManage = GameObject.Find("AdManager");
-        if (AdManage)
+        
+        Debug.Log("Found!");
+        string nameScene = SceneManager.GetActiveScene().name;
+        int indexScene = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log("MyScene" + nameScene + "intt" + indexScene);
+        if (indexScene == 1)
         {
-            Debug.Log("Found!");
-            string nameScene = SceneManager.GetActiveScene().name;
-            if (nameScene == "game")
-            {
-                AdManage.GetComponent<AdStart>().DestroyBannerAd();
+            AdStart.instance.HideBannerAd();
                 
-            }
-            else
-            {
-                AdManage.GetComponent<AdStart>().instance.DisplayBannerAd();
-            }
-        }else
+        }
+        else if (indexScene == 0)
         {
-            Debug.Log("Not found");
+            AdStart.instance.DisplayBannerAd();
         }
     }
     public void LoadLevel(int sceneIndex){
         FindObjectOfType<AudioManager>().Play("uiclick");
-        float x = Random.Range(0f,1f);
+        float x = Random.Range(0,10);
         Debug.Log(x);
-        if(x > 0.4)
+        if(x > 4)
         {
             Debug.Log("AddAppear");
-            AdManage.GetComponent<AdStart>().instance.DisplayInterstitialAd();
+            AdStart.instance.DisplayInterstitialAd();
             StartCoroutine(LoadAsynchronysly(sceneIndex));
         }else
         {
