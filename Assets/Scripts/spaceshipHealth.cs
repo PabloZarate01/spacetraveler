@@ -11,7 +11,7 @@ public class spaceshipHealth : MonoBehaviour
 	public float currentHealth;
 	private float maxHealth = 100f;
 	public static bool dead;
-	public GameObject deadPanel, effectDestroy;
+	public GameObject revivePanel, deadPanel, effectDestroy;
 	//DeadPanel
 	public Text matchScore;
 	public Text matchCoins;
@@ -22,42 +22,53 @@ public class spaceshipHealth : MonoBehaviour
 	public static int finalCoins = naveColliders.coinsCount;
     void Start()
     {
-		nave.SetActive(true);
+        nave.SetActive(true);
 		maxHealth = 100f;
 		dead = false;
-		currentHealth = maxHealth;
-		healthBar.value = calculateHealth ();
+        currentHealth = maxHealth;
+        healthBar.value = calculateHealth ();
     }
 
 	public void TakeDamage(float dmgValue){
 		currentHealth -= dmgValue;
 		healthBar.value = calculateHealth ();
 		if(currentHealth <= 0){
-			Rip ();
-		}
+            FindObjectOfType<AudioManager>().Play("death");
+            effectDestroy = Instantiate(effectDestroy);
+            effectDestroy.transform.position = this.transform.position;
+            revivePanel.SetActive(true);
+            currentHealth = 0;
+            dead = true;
+            nave.SetActive(false);
+        }
 	}
-	public void Rip(){
-		currentHealth = 0;
-		dead = true;
-		deadPanel.SetActive (true);
+	public void Rip()
+    {
+        revivePanel.SetActive(false);
+        deadPanel.SetActive (true);
 		finalScore = naveColliders.scoreCount;
 		finalCoins = naveColliders.coinsCount;
 		matchScore.text = finalScore.ToString ();
 		matchCoins.text = finalCoins.ToString ();
-		nave.SetActive(false);
-		effectDestroy = Instantiate(effectDestroy);
-		effectDestroy.transform.position =this.transform.position;
-		Destroy (this.gameObject);
+        nave.SetActive(false);
+        //Time.timeScale = 0f;
+    }
+    public void JesusRevive()
+    {
+        nave.SetActive(true);
+        nave.GetComponent<naveColliders>().runScoreCount(naveColliders.scoreCount, naveColliders.coinsCount);
+        currentHealth = maxHealth;
+        healthBar.value = calculateHealth();
+        revivePanel.SetActive(false);
         FindObjectOfType<AudioManager>().Play("death");
         //Time.timeScale = 0f;
     }
-	public float calculateHealth(){
+    public float calculateHealth(){
 		return currentHealth / maxHealth;
 	}
 	void OnCollisionEnter2D(Collision2D hit){
 		if (hit.gameObject.tag == "Meteor") {
 			TakeDamage (34f);
-        
 		}
 	}
 }

@@ -14,12 +14,8 @@ public class naveColliders : MonoBehaviour
 	public static int scoreCount = 0;
 	//COINS_SCORE
 	void Start(){
-		coinsCount = 0;
-		scoreCount = 0;
-		coinsText.GetComponent<Text> ();
-		scoreText.GetComponent<Text> ();
-		StartCoroutine (ScoreCounterIE());
-	}
+        runScoreCount(0,0);
+    }
 
 	void Update(){
 		coinsText.text = coinsCount.ToString ();
@@ -31,7 +27,14 @@ public class naveColliders : MonoBehaviour
 			scoreCount += 1;
 		}
 	}
-
+    public void runScoreCount(int score, int coins)
+    {
+        coinsCount = coins;
+        scoreCount = score;
+        coinsText.GetComponent<Text>();
+        scoreText.GetComponent<Text>();
+        StartCoroutine(ScoreCounterIE());
+    }
 	//Add amount of coins
 	void addCoin1(){
 		coinsCount += coinsValues [0];
