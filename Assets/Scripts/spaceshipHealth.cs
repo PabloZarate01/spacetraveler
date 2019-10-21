@@ -42,6 +42,12 @@ public class spaceshipHealth : MonoBehaviour
             nave.SetActive(false);
         }
 	}
+    public void watchReward()
+    {
+        AdStart.instance.DisplayRewardAd();
+        AdStart.instance.RequestVideoAd();
+        JesusRevive();
+    }
 	public void Rip()
     {
         revivePanel.SetActive(false);

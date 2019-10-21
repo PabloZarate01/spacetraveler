@@ -61,7 +61,7 @@ public class AdStart : MonoBehaviour {
         //interstitialAd.LoadAd(request);
         //PROD
     }
-    private void RequestVideoAd()
+    public void RequestVideoAd()
     {
         //TESTING
         string adUnitId = "ca-app-pub-3940256099942544/5224354917";
@@ -96,7 +96,70 @@ public class AdStart : MonoBehaviour {
     public void DisplayRewardAd()
     {
         if (rewardedAd.IsLoaded())
+        {
             rewardedAd.Show();
+        }
+        else
+        {
+            Debug.Log("Not Loaded  adReward");
+        }
+    }
+    public void HandlerRewardAdEvents(bool suscribe)
+    {
+        if (suscribe)
+        {
+            // Called when an ad request has successfully loaded.
+            this.rewardedAd.OnAdLoaded += HandleRewardedAdLoaded;
+            // Called when an ad request failed to load.
+            this.rewardedAd.OnAdFailedToLoad += HandleRewardedAdFailedToLoad;
+            // Called when an ad is shown.
+            this.rewardedAd.OnAdOpening += HandleRewardedAdOpening;
+            // Called when an ad request failed to show.
+            this.rewardedAd.OnAdFailedToShow += HandleRewardedAdFailedToShow;
+            // Called when the user should be rewarded for interacting with the ad.
+            this.rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;
+            // Called when the ad is closed.
+            this.rewardedAd.OnAdClosed += HandleRewardedAdClosed;
+        }
+
+    }
+
+    public void HandleRewardedAdLoaded(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardedAd>>>Loaded event received");
+    }
+
+    public void HandleRewardedAdFailedToLoad(object sender, AdErrorEventArgs args)
+    {
+        MonoBehaviour.print(
+            "HandleRewardedAdFailedToLoad event received with message: "
+                             + args.Message);
+    }
+
+    public void HandleRewardedAdOpening(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardedAdOpening event received");
+    }
+
+    public void HandleRewardedAdFailedToShow(object sender, AdErrorEventArgs args)
+    {
+        MonoBehaviour.print(
+            "HandleRewardedAdFailedToShow event received with message: "
+                             + args.Message);
+    }
+
+    public void HandleRewardedAdClosed(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardedAdClosed event received");
+    }
+
+    public void HandleUserEarnedReward(object sender, Reward args)
+    {
+        string type = args.Type;
+        double amount = args.Amount;
+        MonoBehaviour.print(
+            ">>>>>>>HandleRewardedAdRewarded event received for REVIVE"
+                        + amount.ToString() + " " + type);
     }
     /*
     public void HandleOnAdLoaded(object sender, EventArgs args)
